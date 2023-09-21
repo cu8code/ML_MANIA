@@ -1,4 +1,4 @@
-from flask import Flask,request,redirect,url_for,send_from_directory
+from flask import Flask,request,redirect,url_for,send_from_directory,render_template,current_app
 from markupsafe import escape
 from werkzeug.utils import secure_filename
 import os
@@ -6,15 +6,18 @@ import tensorflow as tf
 import numpy as np
 
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(),'img')
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 MODEL_NAME="Skin_SIH.h5"
 MODEL_DIR="model"
+upload_folder = os.path.join(os.getcwd(),'img')
 model_path=os.path.join(os.getcwd(),MODEL_DIR,MODEL_NAME)
 
 
-app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app = Flask(
+    __name__,
+    static_folder=os.path.join(os.getcwd(),'static'),
+)
+app.config['UPLOAD_FOLDER'] = upload_folder
 
 app.logger.info("loading the ML model")
 model=tf.keras.models.load_model(model_path)
@@ -24,7 +27,7 @@ model=tf.keras.models.load_model(model_path)
 app.logger.info("ML model loaded")
 
 try:
-    os.mkdir(UPLOAD_FOLDER)
+    os.mkdir(upload_folder)
     app.logger.info('create img direcotry')
 except:
     app.logger.info('img direcotry already exists')
@@ -51,15 +54,7 @@ def upload_file():
             (top_class_index,top_class_label,top_class_score) = pred(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return f"Top predicted class: {top_class_index} with score: {top_class_score:.2f}"
             # return redirect(url_for('download_file', name=filename))
-    return '''
-        <!doctype html>
-        <title>Upload new File</title>
-        <h1>Upload new File</h1>
-        <form method=post enctype=multipart/form-data>
-        <input type=file name=file>
-        <input type=submit value=Upload>
-        </form>
-    '''
+    return current_app.send_static_file('index.html')
 
 def pred(img_path1):
     target_size = (75, 100)  # Set the target size to match DenseNet121's input size
