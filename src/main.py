@@ -11,7 +11,7 @@ MODEL_NAME="Skin_SIH.h5"
 MODEL_DIR="model"
 upload_folder = os.path.join(os.getcwd(),'img')
 model_path=os.path.join(os.getcwd(),MODEL_DIR,MODEL_NAME)
-
+TYPE=['Eczema','Warts','Melanoma','Atopic','Basal','Melanocytic','Benign','Psoriasis','Seborrheic','Tinea']
 
 app = Flask(
     __name__,
@@ -51,8 +51,8 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            (top_class_index,top_class_label,top_class_score) = pred(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return f"Top predicted class: {top_class_index} with score: {top_class_score:.2f}"
+            (diseases_name,top_class_index,top_class_label,top_class_score) = pred(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return f"Top predicted class: {diseases_name}"
             # return redirect(url_for('download_file', name=filename))
     return current_app.send_static_file('index.html')
 
@@ -74,7 +74,8 @@ def pred(img_path1):
     top_class_index = np.argmax(predictions)
     top_class_label = top_class_index  # Assuming class labels are integers
     top_class_score = predictions[0, top_class_index]
+    diseases_name = TYPE[top_class_index]
 
     # print(f"Top predicted class: {top_class_label} with score: {top_class_score:.2f}")
 
-    return (top_class_index,top_class_label,top_class_score)
+    return (diseases_name,top_class_index,top_class_label,top_class_score)
