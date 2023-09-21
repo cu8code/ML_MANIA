@@ -7,7 +7,7 @@ import numpy as np
 
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
-MODEL_NAME="Skin_SIH.h5"
+MODEL_NAME="Skin_SIH1.h5"
 MODEL_DIR="model"
 upload_folder = os.path.join(os.getcwd(),'img')
 model_path=os.path.join(os.getcwd(),MODEL_DIR,MODEL_NAME)
@@ -52,7 +52,7 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             (diseases_name,top_class_index,top_class_label,top_class_score) = pred(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return f"Top predicted class: {diseases_name}"
+            return f"<h1>Top predicted class: {diseases_name}</h1>"
             # return redirect(url_for('download_file', name=filename))
     return current_app.send_static_file('index.html')
 
@@ -65,7 +65,7 @@ def pred(img_path1):
 
 # Ensure the image has the correct number of channels
     if img_array1.shape[-1] != channels:
-        raise ValueError(f"Input image should have {channels} channels, but got {img_array1.shape[-1]} channels.")
+        raise ValueError(f"Input image should have {channels} channels, but got {img_array1.shape[-1]} channels")
 
 # Expand the dimensions of the image and preprocess it
     img_array1 = np.expand_dims(img_array1, axis=0)
