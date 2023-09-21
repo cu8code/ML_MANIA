@@ -1,4 +1,4 @@
-from flask import Flask,request,redirect,url_for,send_from_directory,render_template,current_app
+from flask import Flask,request,redirect,url_for,send_from_directory,render_template,current_app,render_template
 from markupsafe import escape
 from werkzeug.utils import secure_filename
 import os
@@ -55,6 +55,7 @@ def upload_file():
             return f"<h1>Top predicted class: {diseases_name}</h1>"
             # return redirect(url_for('download_file', name=filename))
     return current_app.send_static_file('index.html')
+    # return render_template('hello.html',name="anakn")
 
 def pred(img_path1):
     target_size = (75, 100)  # Set the target size to match DenseNet121's input size
