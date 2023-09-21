@@ -48,8 +48,8 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            (a,b,c) = pred(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return f"Top predicted class: {b} with score: {c:.2f}"
+            (top_class_index,top_class_label,top_class_score) = pred(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return f"Top predicted class: {top_class_index} with score: {top_class_score:.2f}"
             # return redirect(url_for('download_file', name=filename))
     return '''
         <!doctype html>
