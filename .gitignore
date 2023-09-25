@@ -1,4 +1,8 @@
-venv
-src\__pycache__
+backend/venv
+backend/src\__pycache__
+backend/img
 img
-.vscode
+backend/.vscode
+backend/frontend\node_modules
+backend/frontend\.next
+backend/frontend\package-lock.json
