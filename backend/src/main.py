@@ -3,6 +3,8 @@ from werkzeug.utils import secure_filename
 import os
 import tensorflow as tf
 import numpy as np
+from flask_cors import CORS,cross_origin
+
 
 
 ALLOWED_EXTENSIONS = {"txt", "pdf", "png", "jpg", "jpeg", "gif"}
@@ -26,6 +28,7 @@ model_path = os.path.join(os.getcwd(),'backend', MODEL_DIR, MODEL_NAME)
 app = Flask(
     __name__,
 )
+CORS(app)
 app.config["UPLOAD_FOLDER"] = upload_folder
 
 model = tf.keras.models.load_model(model_path)
@@ -60,7 +63,7 @@ def upload_file():
             os.path.join(app.config["UPLOAD_FOLDER"], filename)
         )
         return {
-            "diseases_name": diseases_name,
+            "type": diseases_name,
         }
     return {1: "error"}
 

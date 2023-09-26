@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react'
 import Head from 'next/head'
-import { Upload } from './components/upload'
+import  Upload  from '../component/Upload'
 
 const Home = (props) => {
   return (
     <>
-      <div className="home-container">
+      <div className={'home-container'}>
         <Head>
           <title>NOidea</title>
           <meta property="og:title" content="NOidea" />
@@ -14,12 +14,12 @@ const Home = (props) => {
           <img
             alt="logo"
             src="/v987-18a-removebg-preview-200w.png"
-            className="home-image"
+            className={'home-image'}
           />
           <div data-thq="thq-navbar-nav" className="home-desktop-menu">
             <nav className="home-links">
-              <span className="home-text btn-active">ChatBot</span>
-              <span className="home-text01 button">Upload</span>
+              <span className="home-text btn-active">Upload</span>
+              <span className="home-text01 button">ChatBot</span>
             </nav>
             <div className="home-buttons">
               <button className="home-login button">Login</button>
@@ -97,295 +97,13 @@ const Home = (props) => {
             />
           </div>
         </main>
-        <Upload />
+        <div className="home-chat-bot">
+          <Upload />
+        </div>
       </div>
-      <style jsx>
-        {`
-          .home-container {
-            width: 100%;
-            display: flex;
-            overflow: auto;
-            min-height: 100vh;
-            align-items: center;
-            flex-direction: column;
-          }
-          .home-navbar-interactive {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            padding-top: var(--dl-space-space-twounits);
-            padding-left: var(--dl-space-space-threeunits);
-            padding-right: var(--dl-space-space-threeunits);
-            padding-bottom: var(--dl-space-space-twounits);
-            justify-content: space-between;
-          }
-          .home-image {
-            width: 68px;
-            height: 68px;
-          }
-          .home-desktop-menu {
-            flex: 1;
-            display: flex;
-            justify-content: space-between;
-          }
-          .home-links {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            flex-direction: row;
-            justify-content: center;
-          }
-          .home-text {
-            padding: var(--dl-space-space-unit);
-            margin-left: var(--dl-space-space-twounits);
-          }
-          .home-text01 {
-            padding: var(--dl-space-space-unit);
-            margin-left: var(--dl-space-space-twounits);
-          }
-          .home-buttons {
-            display: flex;
-            align-items: center;
-            flex-direction: row;
-            justify-content: space-between;
-          }
-          .home-login {
-            border-width: 0px;
-            margin-right: var(--dl-space-space-twounits);
-          }
-          .home-register {
-            padding: var(--dl-space-space-unit);
-          }
-          .home-burger-menu {
-            display: none;
-          }
-          .home-icon {
-            width: var(--dl-size-size-xsmall);
-            height: var(--dl-size-size-xsmall);
-          }
-          .home-mobile-menu {
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            height: 100vh;
-            display: none;
-            padding: 32px;
-            z-index: 100;
-            position: absolute;
-            flex-direction: column;
-            justify-content: space-between;
-            background-color: #fff;
-          }
-          .home-nav {
-            display: flex;
-            align-items: flex-start;
-            flex-direction: column;
-          }
-          .home-top {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            margin-bottom: var(--dl-space-space-threeunits);
-            justify-content: space-between;
-          }
-          .home-logo {
-            height: 2rem;
-          }
-          .home-close-menu {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-          .home-icon02 {
-            width: var(--dl-size-size-xsmall);
-            height: var(--dl-size-size-xsmall);
-          }
-          .home-links1 {
-            flex: 0 0 auto;
-            display: flex;
-            align-self: flex-start;
-            align-items: flex-start;
-            flex-direction: column;
-          }
-          .home-text02 {
-            margin-bottom: var(--dl-space-space-unit);
-          }
-          .home-text03 {
-            margin-bottom: var(--dl-space-space-unit);
-          }
-          .home-text04 {
-            margin-bottom: var(--dl-space-space-unit);
-          }
-          .home-text05 {
-            margin-bottom: var(--dl-space-space-unit);
-          }
-          .home-text06 {
-            margin-bottom: var(--dl-space-space-unit);
-          }
-          .home-buttons1 {
-            display: flex;
-            margin-top: var(--dl-space-space-unit);
-            align-items: center;
-            flex-direction: row;
-            justify-content: space-between;
-          }
-          .home-login1 {
-            margin-right: var(--dl-space-space-twounits);
-          }
-          .home-icon04 {
-            width: var(--dl-size-size-xsmall);
-            height: var(--dl-size-size-xsmall);
-            margin-right: var(--dl-space-space-twounits);
-          }
-          .home-icon06 {
-            width: var(--dl-size-size-xsmall);
-            height: var(--dl-size-size-xsmall);
-            margin-right: var(--dl-space-space-twounits);
-          }
-          .home-icon08 {
-            width: var(--dl-size-size-xsmall);
-            height: var(--dl-size-size-xsmall);
-          }
-          .home-about {
-            flex: 0 0 auto;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            overflow: hidden;
-            align-items: center;
-            padding-top: 0px;
-            padding-left: var(--dl-space-space-sixunits);
-            padding-right: 0px;
-            flex-direction: row;
-            padding-bottom: 0px;
-            justify-content: flex-start;
-          }
-          .home-container1 {
-            gap: var(--dl-space-space-twounits);
-            flex: 0 0 auto;
-            width: 50%;
-            height: 100%;
-            display: flex;
-            align-items: flex-start;
-            padding-top: var(--dl-space-space-sixunits);
-            flex-direction: column;
-            padding-bottom: var(--dl-space-space-sixunits);
-            justify-content: center;
-          }
-          .home-text07 {
-            color: #0087ef;
-          }
-          .home-text10 {
-            color: #4c4c4c;
-          }
-          .home-container2 {
-            gap: var(--dl-space-space-twounits);
-            flex: 0 0 auto;
-            width: 50%;
-            height: 535px;
-            display: flex;
-            align-self: flex-end;
-            align-items: flex-start;
-            margin-left: var(--dl-space-space-unit);
-            flex-direction: column;
-            justify-content: flex-end;
-            background-color: #ceedff;
-          }
-          .home-image1 {
-            width: 388px;
-            height: 100%;
-            align-self: flex-start;
-            object-fit: cover;
-          }
-          .home-chat-bot {
-            gap: var(--dl-space-space-fiveunits);
-            flex: 0 0 auto;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            padding-top: 0px;
-            padding-left: var(--dl-space-space-sixunits);
-            padding-right: var(--dl-space-space-sixunits);
-            flex-direction: row;
-            padding-bottom: 0px;
-            justify-content: flex-start;
-          }
-          .home-text11 {
-            padding: var(--dl-space-space-unit);
-          }
-          @media (max-width: 767px) {
-            .home-navbar-interactive {
-              padding-left: var(--dl-space-space-twounits);
-              padding-right: var(--dl-space-space-twounits);
-            }
-            .home-desktop-menu {
-              display: none;
-            }
-            .home-burger-menu {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            }
-            .home-text02 {
-              margin-bottom: var(--dl-space-space-unit);
-            }
-            .home-text03 {
-              margin-left: 0;
-              margin-bottom: var(--dl-space-space-unit);
-            }
-            .home-text04 {
-              margin-left: 0;
-              margin-bottom: var(--dl-space-space-unit);
-            }
-            .home-text05 {
-              margin-left: 0;
-              margin-bottom: var(--dl-space-space-unit);
-            }
-            .home-text06 {
-              margin-left: 0;
-              margin-bottom: var(--dl-space-space-unit);
-            }
-            .home-about {
-              padding-left: var(--dl-space-space-unit);
-              padding-right: var(--dl-space-space-unit);
-              flex-direction: column;
-            }
-            .home-container1 {
-              width: 100%;
-              padding-top: 0px;
-              padding-bottom: 0px;
-            }
-            .home-container2 {
-              width: 100%;
-              padding-top: var(--dl-space-space-twounits);
-              padding-bottom: var(--dl-space-space-twounits);
-            }
-            .home-chat-bot {
-              padding-left: var(--dl-space-space-oneandhalfunits);
-              padding-right: var(--dl-space-space-oneandhalfunits);
-            }
-          }
-          @media (max-width: 479px) {
-            .home-navbar-interactive {
-              padding: var(--dl-space-space-unit);
-            }
-            .home-mobile-menu {
-              padding: 16px;
-            }
-            .home-image1 {
-              width: auto;
-            }
-            .home-chat-bot {
-              gap: var(--dl-space-space-unit);
-              padding-top: var(--dl-space-space-unit);
-              flex-direction: row;
-              padding-bottom: var(--dl-space-space-unit);
-            }
-          }
-        `}
-      </style>
     </>
   )
 }
+
 
 export default Home
