@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import { Upload } from './components/upload'
 
 const Home = (props) => {
   return (
@@ -75,7 +76,7 @@ const Home = (props) => {
               <span>
                 I inadvertently went to See&apos;s Candy last week (I was in the
                 mall looking for phone repair), and as it turns out, See&apos;s
-                Candy now charges a dollar) 
+                Candy now charges a dollar
               </span>
               <br></br>
             </h1>
@@ -96,12 +97,7 @@ const Home = (props) => {
             />
           </div>
         </main>
-        <div className="home-chat-bot">
-          <span className="home-text11 btn-active">
-            <span>ChatBot</span>
-            <br></br>
-          </span>
-        </div>
+        <Upload />
       </div>
       <style jsx>
         {`
