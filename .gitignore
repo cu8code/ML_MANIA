@@ -2,7 +2,7 @@ backend/venv
 backend/src\__pycache__
 backend/img
 img
-backend/.vscode
-backend/frontend\node_modules
-backend/frontend\.next
-backend/frontend\package-lock.json
+.vscode
+frontend\node_modules
+frontend\.next
+frontend\package-lock.json
