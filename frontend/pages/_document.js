@@ -1,4 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Navbar from '../component/Navbar'
+
 class CustomDocument extends Document {
   render() {
     return (
@@ -31,7 +33,10 @@ class CustomDocument extends Document {
           ></link>
         </Head>
         <body>
-          <Main></Main>
+          <Navbar />
+          <div className='ultimate-center'>
+            <Main></Main>
+          </div>
           <NextScript></NextScript>
           <div
             dangerouslySetInnerHTML={{

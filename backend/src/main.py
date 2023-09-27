@@ -3,9 +3,7 @@ from werkzeug.utils import secure_filename
 import os
 import tensorflow as tf
 import numpy as np
-from flask_cors import CORS,cross_origin
-
-
+from flask_cors import CORS
 
 ALLOWED_EXTENSIONS = {"txt", "pdf", "png", "jpg", "jpeg", "gif"}
 MODEL_NAME = "Skin_SIH1.h5"
@@ -31,7 +29,10 @@ app = Flask(
 CORS(app)
 app.config["UPLOAD_FOLDER"] = upload_folder
 
+# loading our custome model ---------------------
 model = tf.keras.models.load_model(model_path)
+# end loading our custome model -----------------
+
 
 try:
     os.mkdir(upload_folder)
@@ -47,6 +48,11 @@ def allowed_file(filename):
 # @app.route('/uploads/<name>')
 # def download_file(name):
 #     return send_from_directory(app.config["UPLOAD_FOLDER"], name)
+
+
+@app.router("/api/chatapp",method=['POST'])
+def chatapp_api():
+    return
 
 
 @app.route("/api/upload", methods=["POST"])
